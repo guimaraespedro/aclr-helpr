@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-error.log
+.yarn-integrity
+
+# Expo specific
+.expo/
+.expo-shared/
+# Prevent logs and cache files from being committed
+.env
+*.log
+*.tlog
+*.lock
+package-lock.json
+yarn.lock
+
+# Metro bundler cache
+metro-cache/
+
+# Build artifacts
+android/app/build/
+ios/Pods/
+ios/build/
+
+# Editor & OS specific files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
