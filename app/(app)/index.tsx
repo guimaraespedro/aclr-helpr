@@ -1,27 +1,39 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { DeviceMotion } from "expo-sensors";
 import { Subscription } from "expo-sensors/build/DeviceSensor";
+import { colors } from "../../constants/colors";
+import { useSession } from "../../hooks/useSession";
 
 // utilizar DeviceMotion do expo com o listener no atributo de { rotation }
 // assim a gente consegue ter acesso ao rotation.beta (pitch) que o angulo em que o celular esta
-// orientedo. acredito que temos que passar esse valor para graus, deve estar em radianos (chute)
+// orientado. acredito que temos que passar esse valor para graus, deve estar em radianos
 
 interface MeasureAngles {
-  first: number;
-  second: number;
+  first: number | null;
+  second: number | null;
 }
 
 export default function Index() {
   const [isMeasuring, setIsMeasuring] = useState(false);
   const rotationRef = useRef<Subscription | null>(null);
   const currAngleRef = useRef<number>(0); // store the angle in a ref instead of state to not trigger unecessary re-renders
-  const [measures, setMeasures] = useState<Array<number>>([]); // make this an object instead of an array
+  const [measures, setMeasures] = useState<MeasureAngles>({
+    first: null,
+    second: null,
+  });
+  const { signOut } = useSession();
+
+  useEffect(() => {
+    return () => {
+      rotationRef.current?.remove();
+    };
+  }, []);
 
   const startSensors = () => {
     setIsMeasuring(true);
 
-    DeviceMotion.setUpdateInterval(100);
+    DeviceMotion.setUpdateInterval(200);
 
     rotationRef.current = DeviceMotion.addListener((event) => {
       if (!event.accelerationIncludingGravity) return;
@@ -41,24 +53,24 @@ export default function Index() {
   };
 
   const calculateExtensionLabel = () => {
-    try {
-      const firstAngle = measures[0];
-      const secondAngle = measures[1];
-
-      const calculatedAngle = firstAngle - secondAngle;
-      const label = calculatedAngle.toFixed(0);
-      return label + "";
-    } catch {
-      return "Error calculating extension angle";
-    }
+    if (measures.first === null || measures.second === null) return "N/A";
+    return `${(measures.first - measures.second).toFixed(0)}`;
   };
 
   const onCaptureMeasurement = () => {
-    if (measures.length === 1) {
-      rotationRef.current?.remove();
-      rotationRef.current = null;
-    }
-    setMeasures([...measures, currAngleRef.current]);
+    setMeasures((prev) => {
+      const newMeasures =
+        prev.first === null
+          ? { ...prev, first: currAngleRef.current }
+          : { ...prev, second: currAngleRef.current };
+
+      if (newMeasures.second !== null) {
+        rotationRef.current?.remove();
+        rotationRef.current = null;
+      }
+
+      return newMeasures;
+    });
   };
 
   return (
@@ -70,7 +82,7 @@ export default function Index() {
         gap: 100,
       }}
     >
-      {measures.length < 2 &&
+      {measures.second != null &&
         (!isMeasuring ? (
           <TouchableOpacity
             style={{
@@ -96,12 +108,18 @@ export default function Index() {
             onPress={onCaptureMeasurement}
           >
             <Text>
-              Get {measures.length === 0 ? "first" : "second"} measure
+              Get {measures.first === null ? "first" : "second"} measure
             </Text>
           </TouchableOpacity>
         ))}
+      <View style={{ width: "100%", padding: 16 }}>
+        <Text>Write in here</Text>
+        <View
+          style={{ borderColor: "black", width: "100%", borderWidth: 1 }}
+        ></View>
+      </View>
 
-      {measures.length === 2 && (
+      {measures.second !== null && (
         <View>
           <Text>Finished capturing angles</Text>
           <Text>Your extension is at</Text>
@@ -118,10 +136,24 @@ export default function Index() {
         }}
         onPress={() => {
           setIsMeasuring(false);
-          setMeasures([]);
+          setMeasures({ first: null, second: null });
         }}
       >
         <Text>Reset all</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          signOut();
+        }}
+        style={{
+          backgroundColor: colors.primary,
+          borderRadius: 10,
+          padding: 10,
+          width: 200,
+          height: 60,
+        }}
+      >
+        <Text>Logout</Text>
       </TouchableOpacity>
     </View>
   );
