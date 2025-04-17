@@ -14,7 +14,7 @@ interface MeasureAngles {
   second: number | null;
 }
 
-export default function Index() {
+export default function HomeScreen() {
   const [isMeasuring, setIsMeasuring] = useState(false);
   const rotationRef = useRef<Subscription | null>(null);
   const currAngleRef = useRef<number>(0); // store the angle in a ref instead of state to not trigger unecessary re-renders

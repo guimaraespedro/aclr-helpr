@@ -12,7 +12,7 @@ export default function SignIn() {
       <TouchableOpacity
         onPress={() => {
           signIn("logged in!");
-          router.replace("/");
+          router.replace("/(authorized)/home");
         }}
         style={{
           backgroundColor: colors.primary,

@@ -1,6 +1,6 @@
-import { Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 import { colors } from "../constants/colors";
-import { SessionProvider } from "../hooks/useSession";
+import { SessionProvider, useSession } from "../hooks/useSession";
 
 export default function Root() {
   return (
@@ -14,6 +14,7 @@ export default function Root() {
           headerTitleStyle: {
             fontWeight: "bold",
           },
+          headerShown: false,
         }}
         initialRouteName="sign-in"
       >
