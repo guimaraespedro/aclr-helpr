@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { colors } from "../constants/colors";
-import { useSession } from "../hooks/useSession";
+import { colors } from "../../constants/colors";
+import { useSession } from "../../hooks/useSession";
 import { router } from "expo-router";
 
 export default function SignIn() {
@@ -20,7 +20,7 @@ export default function SignIn() {
         <TouchableOpacity
           onPress={() => {
             signIn("logged in!");
-            router.replace("/(authorized)/home");
+            router.navigate("/(authorized)/home");
           }}
           style={{
             backgroundColor: colors.primary,

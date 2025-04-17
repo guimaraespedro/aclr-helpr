@@ -16,16 +16,7 @@ export default function AppLayout() {
 
   return (
     <Tabs
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          let iconName;
-          if (route.name === "home") {
-            iconName = "home";
-          } else if (route.name === "profile") {
-            iconName = "person";
-          }
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
+      screenOptions={() => ({
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: "gray",
         headerShown: true,
@@ -34,6 +25,9 @@ export default function AppLayout() {
       <Tabs.Screen
         name="home"
         options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
           title: "Home",
           headerStyle: { backgroundColor: colors.primary },
           headerTintColor: "#fff",
@@ -42,6 +36,9 @@ export default function AppLayout() {
       <Tabs.Screen
         name="profile"
         options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
           title: "Profile",
           headerStyle: { backgroundColor: colors.primary },
           headerTintColor: "#fff",

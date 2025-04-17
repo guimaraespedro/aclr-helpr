@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import { colors } from "../constants/colors";
-import { useSession } from "../hooks/useSession";
+import { colors } from "../../constants/colors";
+import { useSession } from "../../hooks/useSession";
 import { router } from "expo-router";
 
 export default function SignIn() {
