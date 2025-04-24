@@ -1,5 +1,5 @@
 import { Slot } from "expo-router";
-import { SessionProvider } from "../hooks/useSession";
+import { SessionProvider } from "../../hooks/useSession";
 
 export default function RootLayout() {
   return (

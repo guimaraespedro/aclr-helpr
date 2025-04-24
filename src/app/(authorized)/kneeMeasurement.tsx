@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { DeviceMotion } from "expo-sensors";
 import { Subscription } from "expo-sensors/build/DeviceSensor";
-import { colors } from "../../constants/colors";
-import { useSession } from "../../hooks/useSession";
+import { colors } from "../../../constants/colors";
+import { useSession } from "../../../hooks/useSession";
 
 // utilizar DeviceMotion do expo com o listener no atributo de { rotation }
 // assim a gente consegue ter acesso ao rotation.beta (pitch) que o angulo em que o celular esta

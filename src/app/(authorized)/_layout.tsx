@@ -1,7 +1,7 @@
 import { Redirect, Tabs } from "expo-router";
-import { useSession } from "../../hooks/useSession";
+import { useSession } from "../../../hooks/useSession";
 import { Ionicons } from "@expo/vector-icons";
-import { colors } from "../../constants/colors";
+import { colors } from "../../../constants/colors";
 
 export default function AppLayout() {
   const { session } = useSession();

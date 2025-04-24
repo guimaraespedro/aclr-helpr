@@ -1,6 +1,6 @@
 import { Redirect, Stack } from "expo-router";
-import { colors } from "../../constants/colors";
-import { SessionProvider } from "../../hooks/useSession";
+import { colors } from "../../../constants/colors";
+import { SessionProvider } from "../../../hooks/useSession";
 
 export default function PublicLayout() {
   return (

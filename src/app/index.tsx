@@ -1,5 +1,5 @@
 import { Redirect } from "expo-router";
-import { useSession } from "../hooks/useSession";
+import { useSession } from "../../hooks/useSession";
 import { ActivityIndicator, View } from "react-native";
 
 export default function Index() {
