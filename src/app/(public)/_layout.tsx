@@ -1,39 +1,31 @@
-import { Redirect, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { colors } from "../../../constants/colors";
-import { SessionProvider } from "../../../hooks/useSession";
+import { StatusBar } from "react-native";
 
 export default function PublicLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: colors.primary,
-        },
-        headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
-        },
-        headerShown: false,
-        animation: "fade",
-      }}
-      initialRouteName="sign-in"
-    >
-      <Stack.Screen
-        name="sign-in"
-        options={{
-          headerShown: true,
-          headerTitle: "Sign in",
-          headerBackVisible: false,
-        }}
+    <>
+      <StatusBar
+        backgroundColor={colors.dark_background} // Set to your desired color
+        barStyle="light-content" // Use "light-content" for white text/icons
       />
-      <Stack.Screen
-        name="sign-up"
-        options={{
-          headerShown: true,
-          headerTitle: "Sign up",
-          headerBackVisible: false,
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: colors.dark_background,
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          headerShown: false,
+          animation: "fade",
         }}
-      ></Stack.Screen>
-    </Stack>
+        initialRouteName="sign-in"
+      >
+        <Stack.Screen name="sign-in" />
+        <Stack.Screen name="sign-up"></Stack.Screen>
+      </Stack>
+    </>
   );
 }

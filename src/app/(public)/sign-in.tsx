@@ -7,7 +7,9 @@ export default function SignIn() {
   const { signIn } = useSession();
 
   return (
-    <View style={{ flex: 1, padding: 12 }}>
+    <View
+      style={{ flex: 1, padding: 12, backgroundColor: colors.dark_background }}
+    >
       <View
         style={{
           flex: 1,

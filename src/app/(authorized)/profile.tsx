@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { colors } from "../../../constants/colors";
 
 export default function ProfileScreen() {
   return (
@@ -14,10 +15,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: colors.dark_background,
   },
   text: {
     fontSize: 24,
     fontWeight: "bold",
+    color: colors.text_primary,
   },
 });

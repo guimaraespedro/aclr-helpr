@@ -2,6 +2,7 @@ import { Redirect, Tabs } from "expo-router";
 import { useSession } from "../../../hooks/useSession";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../../constants/colors";
+import { StatusBar } from "react-native";
 
 export default function AppLayout() {
   const { session } = useSession();
@@ -15,35 +16,50 @@ export default function AppLayout() {
   }
 
   return (
-    <Tabs
-      screenOptions={() => ({
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: "gray",
-        headerShown: true,
-      })}
-    >
-      <Tabs.Screen
-        name="home"
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
-          ),
-          title: "Home",
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: "#fff",
-        }}
+    <>
+      <StatusBar
+        backgroundColor={colors.dark_background} // Set to your desired color
+        barStyle="light-content" // Use "light-content" for white text/icons
       />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" size={size} color={color} />
-          ),
-          title: "Profile",
-          headerStyle: { backgroundColor: colors.primary },
-          headerTintColor: "#fff",
-        }}
-      />
-    </Tabs>
+      <Tabs
+        screenOptions={() => ({
+          tabBarActiveTintColor: colors.primary,
+          tabBarInactiveTintColor: "white",
+          headerShown: true,
+          tabBarStyle: {
+            backgroundColor: colors.dark_background,
+            borderTopWidth: 0,
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            elevation: 0,
+          },
+        })}
+      >
+        <Tabs.Screen
+          name="home"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="home" size={size} color={color} />
+            ),
+            title: "Home",
+            headerStyle: { backgroundColor: colors.dark_background },
+            headerTintColor: colors.text_primary,
+          }}
+        />
+        <Tabs.Screen
+          name="profile"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="person" size={size} color={color} />
+            ),
+            title: "Profile",
+            headerStyle: { backgroundColor: colors.dark_background },
+            headerTintColor: colors.text_primary,
+          }}
+        />
+      </Tabs>
+    </>
   );
 }
