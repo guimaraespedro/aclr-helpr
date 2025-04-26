@@ -4,36 +4,13 @@ import { colors } from "../../../../constants/colors";
 import { router } from "expo-router";
 
 export default function HomeScreen() {
-  const onMeasureKneeAnglePress = () => {
-    // Navigate to the knee angle measurement screen
-    router.push("/(authorized)/home/kneeMeasurement");
-  };
-
   return (
     <View style={styles.container}>
-      <Card
-        onPress={() => {}}
-        title="Daily entry"
-        description="Leave a note about how you feel today"
-        buttonText="Go to my daily entry"
-      ></Card>
-      <Card
-        onPress={onMeasureKneeAnglePress}
-        title="Track your progess!"
-        description="Track your progress over time and see your improvements!"
-        buttonText="Go to my progress"
-      ></Card>
       <Card
         onPress={() => {}}
         title="My exercise programs"
         description="Create and manage your exercises"
         buttonText="Go to my programs"
-      ></Card>
-      <Card
-        onPress={() => {}}
-        title="Historic"
-        description="Check out your historic data"
-        buttonText="Go to my historic data"
       ></Card>
     </View>
   );

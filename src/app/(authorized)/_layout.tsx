@@ -53,6 +53,14 @@ export default function AppLayout() {
             ),
           }}
         />
+        <Tabs.Screen
+          name="plan"
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="calendar" size={size} color={color} />
+            ),
+          }}
+        />
       </Tabs>
     </>
   );
