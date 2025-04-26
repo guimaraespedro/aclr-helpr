@@ -25,7 +25,7 @@ export default function AppLayout() {
         screenOptions={() => ({
           tabBarActiveTintColor: colors.primary,
           tabBarInactiveTintColor: "white",
-          headerShown: true,
+          headerShown: false,
           tabBarStyle: {
             backgroundColor: colors.dark_background,
             borderTopWidth: 0,
@@ -43,9 +43,6 @@ export default function AppLayout() {
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="home" size={size} color={color} />
             ),
-            title: "Home",
-            headerStyle: { backgroundColor: colors.dark_background },
-            headerTintColor: colors.text_primary,
           }}
         />
         <Tabs.Screen
@@ -54,9 +51,6 @@ export default function AppLayout() {
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="person" size={size} color={color} />
             ),
-            title: "Profile",
-            headerStyle: { backgroundColor: colors.dark_background },
-            headerTintColor: colors.text_primary,
           }}
         />
       </Tabs>

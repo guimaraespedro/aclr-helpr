@@ -1,13 +1,17 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { colors } from "../../../constants/colors";
+import { colors } from "../../../../constants/colors";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.cardButton}>
-        <Text style={styles.cardText}>Measure Knee Angle</Text>
-      </TouchableOpacity>
+      <Link href="/home/kneeMeasurement" asChild>
+        <TouchableOpacity style={styles.cardButton}>
+          <Text style={styles.cardText}>Measure Knee Angle</Text>
+        </TouchableOpacity>
+      </Link>
+
       <TouchableOpacity style={styles.cardButton}>
         <Text style={styles.cardText}>Create My Exercise Program</Text>
       </TouchableOpacity>
